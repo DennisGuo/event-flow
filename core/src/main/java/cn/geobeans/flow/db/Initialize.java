@@ -30,8 +30,8 @@ public class Initialize {
             //操作数据库
             conn = flowService.getConnection();
             ps = conn.prepareStatement(sql);
-            int rs = ps.executeUpdate();
-            System.err.println("初始化FlowService数据库："+(rs>0 ?"成功":"失败"));
+            boolean rs = ps.execute();
+            System.err.println("初始化FlowService数据库："+(rs ?"成功":"失败"));
         } catch (SQLException e) {
             System.err.println("初始化数据库失败：" + e.getLocalizedMessage());
             e.printStackTrace();
@@ -67,6 +67,7 @@ public class Initialize {
         }
         String rs = sb.toString();
         rs = rs.replaceAll("__PREFIX__",prefix);
+        System.out.println("初始化数据库SQL: " + rs);
         return rs;
     }
 

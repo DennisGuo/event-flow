@@ -34,23 +34,7 @@ public class FlowService {
     private String databaseType = "h2";
 
     public FlowService() {
-    }
-
-    public FlowService(DataSource dataSource) {
-        this(dataSource, PREFIX_DEFAULT, true);
-    }
-
-    public FlowService(DataSource dataSource, String prefix) {
-        this(dataSource, prefix, true);
-    }
-
-    public FlowService(DataSource dataSource, String prefix, boolean update) {
-        this.dataSource = dataSource;
-        this.prefix = prefix;
-        this.update = update;
-
-        init();
-
+        System.out.println("constructor...");
     }
 
     /**
@@ -88,7 +72,7 @@ public class FlowService {
             String sql = String.format("SELECT ID,NAME FROM %sFLOW",this.prefix);
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
+            logi("执行SQL: " + sql);
             while(rs.next()){
                 Flow f = new Flow();
                 f.setId(rs.getInt(0));
@@ -101,8 +85,9 @@ public class FlowService {
         return list;
     }
 
-
-
+    private void logi(String s) {
+        System.out.println(s);
+    }
 
 
     /**********************************************/
@@ -118,7 +103,7 @@ public class FlowService {
     }
 
     public void setDatabaseType(String databaseType) {
-        this.databaseType = databaseType;
+        System.out.println("setDatabaseType");this.databaseType = databaseType;
     }
 
     public boolean isUpdate() {
@@ -126,7 +111,7 @@ public class FlowService {
     }
 
     public void setUpdate(boolean update) {
-        this.update = update;
+        System.out.println("setUpdate");this.update = update;
     }
 
     public DataSource getDataSource() {
@@ -134,6 +119,7 @@ public class FlowService {
     }
 
     public void setDataSource(DataSource dataSource) {
+        System.out.println("setDataSource");
         this.dataSource = dataSource;
     }
 
@@ -142,6 +128,7 @@ public class FlowService {
     }
 
     public void setPrefix(String prefix) {
+        System.out.println("setPrefix");
         this.prefix = prefix;
     }
 }
