@@ -2,20 +2,29 @@ group 'cn.geobeans'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
-
+compileJava.options.encoding = 'UTF-8'
 sourceCompatibility = 1.5
 
-repositories {
-//    mavenCentral()
-    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+//repositories {
+////    mavenCentral()
+//    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+//}
+
+jar {
+    manifest {
+        attributes  'Implementation-Title': 'Geobeans event flow',
+                'Implementation-Version': version,
+                'Main-Class': "cn.geobeans.flow.db.Initialize"
+    }
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
+
+
 task "mkdirs" << {
     sourceSets*.java.srcDirs*.each { it.mkdirs() }
     sourceSets*.resources.srcDirs*.each { it.mkdirs() }
 }
-
