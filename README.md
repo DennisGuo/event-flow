@@ -1,2 +1,8 @@
-# event-flow
-A flexible and  simplify business flow java library
+# Event-Flow
+
+一个简单的灵活的业务流程JAVA库
+
+## 目标
+
+- 实现灵活的业务流程配置，类似 `BPM` 但是却非常简单
+- 能够非常快速的嵌入应用开发，不必重复造轮子
