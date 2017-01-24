@@ -1,4 +1,4 @@
-group 'cn.geobeans'
+group 'cn.geobeans.flow'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'

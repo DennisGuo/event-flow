@@ -16,13 +16,13 @@ import java.io.IOException;
 public class FlowServlet extends HttpServlet {
 
 
-    protected final String     resourcePath;
+    protected final String     resourcePath = "public";
 
     protected String           remoteAddressHeader = null;
 
-    public FlowServlet(String resourcePath){
-        this.resourcePath = resourcePath;
+    public FlowServlet() {
     }
+
 
     public void init() throws ServletException {
 
@@ -38,7 +38,7 @@ public class FlowServlet extends HttpServlet {
             IOException {
 
         String filePath = getFilePath(fileName);
-
+//        System.out.println("filepath:"+filePath);
         if (filePath.endsWith(".html")) {
             response.setContentType("text/html; charset=utf-8");
         }
@@ -69,6 +69,10 @@ public class FlowServlet extends HttpServlet {
         String servletPath = request.getServletPath();
         String requestURI = request.getRequestURI();
 
+//        System.out.println("contextPath:"+contextPath);
+//        System.out.println("servletPath:"+servletPath);
+//        System.out.println("requestURI:"+requestURI);
+
         response.setCharacterEncoding("utf-8");
 
         if (contextPath == null) { // root context
@@ -81,9 +85,9 @@ public class FlowServlet extends HttpServlet {
 
         if ("".equals(path)) {
             if (contextPath.equals("") || contextPath.equals("/")) {
-                response.sendRedirect("/druid/index.html");
+                response.sendRedirect("/public/index.html");
             } else {
-                response.sendRedirect("druid/index.html");
+                response.sendRedirect("public/index.html");
             }
             return;
         }
